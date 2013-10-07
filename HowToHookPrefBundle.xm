@@ -6,6 +6,7 @@
 
 %hook AssistantController // This is a class in Assistant.bundle (Siri Preferences Bundle)
 
+// The method we want to hook
 - (void)setAssistantLanguage:(id)language forSpecifier:(id)specifier
 {
 	%log;
@@ -22,12 +23,11 @@
 // This is method we use for making our hook(s) running
 - (void)lazyLoadBundle:(PSSpecifier *)bundle
 {
+	%orig; // Call the original method first, or let the bundle loaded
 	if ([bundle.name isEqualToString:@"Siri"]) // Detect bundle(s) name to hook
 	{
-		%orig; // Always call original method
 		%init(SiriHook, AssistantController = objc_getClass("AssistantController")); // initialize the hook(s), get class(es) if it's neccessary
-	} else // If not, keep the original
-		%orig;
+	}
 }
 
 %end
