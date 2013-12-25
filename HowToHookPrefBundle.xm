@@ -17,7 +17,7 @@
 
 %end
 
-// Now head to PSListController (For iOS 6) or PSRootController (For iOS 4 and 5)
+// Now head to PSListController (For iOS 6 and 7) or PSRootController (For iOS 4 and 5)
 %hook PSListController
 
 // This is method we use for making our hook(s) running
